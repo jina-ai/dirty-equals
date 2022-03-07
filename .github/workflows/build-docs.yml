@@ -1,0 +1,42 @@
+name: Build Docs
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - '**'
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: set up python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'
+
+    - name: install
+      run: pip install -r docs/requirements.txt
+
+    - name: install mkdocs-material-insiders
+      if: github.event.pull_request.head.repo.fork == false && steps.cache.outputs.cache-hit != 'true'
+      run: pip install mkdocs-material
+
+    - name: build site
+      run: mkdocs build --strict
+
+    - name: Deploy to Netlify
+      uses: nwtgck/actions-netlify@v1.2
+      with:
+        publish-dir: './site'
+        production-branch: main
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        enable-commit-comment: false
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
