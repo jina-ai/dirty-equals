@@ -99,23 +99,3 @@ pip install dirty-equals
 
 **dirty-equals** requires **Python 3.7+**.
 
-<section>
-    <script src="https://jina-docqa-ui.netlify.app/dist/qabot.js"></script>
-    <qa-bot
-        token="Hlssdx6Kdi9YB22wMXRfFnP_ezdPGHL8dzUBE3f4aiIBEm__fzdfWXrlfShdFjDgdzVNWX_j"
-        theme="infer"
-        site="https://dirty-equals.helpmanual.io"
-        target="_blank"
-        orientation="bottom-right"
-        title="dirty-equals"
-        description="Doing dirty (but extremely useful) things with equals">
-        <template>
-            <dl>
-                <dt>You can ask questions about dirty-equals. Try</dt>
-                <dd>Where can dirty-equals be used?</dd>
-                <dd>Can i compare a subset of a dictionary?</dd>
-                <dd>Does dirty-equals allow comparison with the uninitialized types？</dd>
-            </dl>
-        </template>
-      </qa-bot>
-</section>
